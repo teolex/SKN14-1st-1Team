@@ -1,9 +1,9 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
+name: Our first custom issue templete
+about: It's to learn and get used to github and easily work together.
 title: ''
 labels: ''
-assignees: daronus
+assignees: ''
 
 ---
 
