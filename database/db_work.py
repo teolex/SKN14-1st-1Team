@@ -1,9 +1,23 @@
 import streamlit as st
 
-import mysql.connector
-from Car import Car
+from Key import Key
 
-def __get_car_list(cursor):
+import mysql.connector
+from model.Car import Car
+
+def __get_all_car_list(cursor) -> dict:
+	"""
+	DB 에서 전체 제조사의 전체 차종의 전체 스펙들을 조회하여 반환.\n
+	반환값 예시)
+\t		st.session_state["all_cars"] = {
+\t\t		"Audi" : [],\n
+\t\t		"Ford" : [
+\t\t\t			Car( 'Car No.1', ... ),\n
+\t\t\t			Car( 'Car No.2', ... ),\n
+\t\t\t			...
+\t\t		]
+\t		}
+	"""
 	query = """
 select distinct id,
        make,                                                                                    -- 제조사
@@ -32,102 +46,39 @@ from   menudb.all_vehicles_model_public info
 order by make, year desc, model
 """
 	cursor.execute(query)
-	_tmp_cars = cursor.fetchall()
-	cars_by_make = {}
-	for tpl_car in _tmp_cars:
+	make_cars_dict = {}
+	for tpl_car in cursor.fetchall():
 		car = Car(*tpl_car)
-		lst = cars_by_make[car.make] if car.make in cars_by_make else []
-		lst.append(car)
-		cars_by_make[car.make] = lst
+		if car.make not in make_cars_dict:	make_cars_dict[car.make] = []
+		make_cars_dict[car.make].append(car)
 
 	#TODO make 별 리스트를 다시 한번 dict 로 mapping할지 말지 여부 결정 필요.
 	#TODO 리스트를 어떤 기준으로 정렬할지 결정 필요.
-	return cars_by_make
+	return make_cars_dict
 
 ################################################################################
-# @st.dialog("Choose a car to compare", width="large")
-def show_cars():
-	style = """
-<style>
-	a + em { display:block; color:gray; text-align:center; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
-	div[data-testid=stDialog] div[role=dialog] { width:80vw; }
-	
-	button[kind=tertiary] { width:100%; color:#afafaf; }
-</style>
-"""
-	st.markdown(style, unsafe_allow_html=True)
+def check_if_data_in_session() -> None:
+	__key_all_cars		= Key.key_all_cars()
+	__key_alpha_make	= Key.key_alpha_make()
 
-	################################################################################
-
-	if "mk" in st.query_params:
-		if "mk" not in st.session_state:
-			st.session_state["mk"] = []
-
-		__make = st.query_params["mk"]
-		st.session_state.mk.append(__make)
-
-	################################################################################
-
-	if "all_cars" not in st.session_state:
-		config = {
+	if __key_all_cars not in st.session_state:						# DB 조회한 정보가 세션에 없으면,
+		config = {								# DB 접속정보 설정
 			"host"		: "localhost",
-			"port"		: 3306,			# 기본 포트 쓸 경우 생략가능
+			"port"		: 3306,
 			"user"		: "skn14",
 			"password"	: "skn14",
 			"database"	: "menudb"
 		}
-		with mysql.connector.connect(**config) as conn:
+		with mysql.connector.connect(**config) as conn:				# DB 에 접속해서
 			with conn.cursor() as cursor:
-				make_cars_dict = __get_car_list(cursor)
-				st.session_state["all_cars"] = make_cars_dict
+				make_cars_dict = __get_all_car_list(cursor)			# 모든 차종 정보 조회하고
+				st.session_state[__key_all_cars] = make_cars_dict	# session_state 에 저장.
 
 		alphabet_group = {}
 		for make in make_cars_dict:
-			first_letter = make[0].upper()
-			lst = alphabet_group[first_letter] if first_letter in alphabet_group else []
-			lst.append(make)
-			alphabet_group[first_letter] = lst
+			ch  = make[0].upper()									# 제조사 첫글자를 대문자로 따서,
+			if ch not in alphabet_group:	alphabet_group[ch] = []
+			alphabet_group[ch].append(make)							# 해당 알파벳의 list 에 제조사 추가.
 
-		alphabet_group = dict(sorted(alphabet_group.items()))
-		st.session_state["alphabet_group"] = alphabet_group
-	else:
-		make_cars_dict = st.session_state["all_cars"]
-		alphabet_group = st.session_state["alphabet_group"]
-
-	################################################################################
-
-	st.header("Choose cars to compare")
-
-	col1, col2, col3 = st.columns([1,6,1])
-	col1.write("Target :")
-	col2.write(", ".join(st.session_state["mk"]) if "mk" in st.session_state else "")
-	if col3.button("Clear", use_container_width=True):
-		st.session_state["mk"] = []
-		st.rerun()
-
-	################################################################################
-
-	COLUMN_CNT = 5
-	tmp_logo = "https://qi-o.qoo10cdn.com/goods_image_big/7/1/5/3/7871437153_l.jpg"
-
-	for letter,make_list in alphabet_group.items():
-		car_names = ", ".join(make_list)
-		car_names = car_names[:90] + "..." if len(car_names) > 90 else car_names
-
-		label = rf"🚗 **{letter}** ({len(make_list)}) - _:gray[{car_names}]_"
-		with st.expander(label):
-			cols = st.columns(COLUMN_CNT)
-			for i, make in enumerate(make_list):
-				_idx = i % COLUMN_CNT
-				with cols[_idx]:
-					st.image(tmp_logo, use_container_width=True)
-					# st.markdown(f"[![{make}]({tmp_logo})](link)*{make}*")
-					# st.markdown(f"<a href='?mk={make}' target='_self'><img src='{tmp_logo}'></a>", unsafe_allow_html=True)
-					if st.button(make, type="tertiary"):
-						if "mk" not in st.session_state:
-							st.session_state["mk"] = []
-						st.session_state["mk"].append(make)
-						st.rerun()
-
-if __name__ == "__main__":
-	show_cars()
+		alphabet_group = dict(sorted(alphabet_group.items()))		# 알파벳 순서로 정렬하고,
+		st.session_state[__key_alpha_make] = alphabet_group			# session_state 에 저장.
