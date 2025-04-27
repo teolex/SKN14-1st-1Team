@@ -1,3 +1,6 @@
+import re
+
+
 class Car:
 
 	def __init__(self,
@@ -23,7 +26,8 @@ class Car:
 				start_stop,
 				drive,
 				luggage_volume,
-				guzzler):
+				guzzler,
+				image="https://imgd.aeplcdn.com/600x600/cw/ec/19894/Audi-A6-Driving-56392.jpg?wm=0&t=150934537&t=150934537"):
 		self.__id							= id
 		self.__make							= make
 		self.__model						= model
@@ -47,6 +51,7 @@ class Car:
 		self.__drive						= drive
 		self.__luggage_volume				= luggage_volume
 		self.__guzzler						= guzzler
+		self.__image						= image
 
 	@property
 	def make(self):							return self.__make
@@ -86,7 +91,43 @@ class Car:
 	def drive(self):						return self.__drive
 	@property
 	def guzzler(self):						return self.__guzzler
+	@property
+	def image(self):						return self.__image
 
 
+	def data_list(self):
+		return [
+			self.__make,
+			self.__model,
+			self.__electric_motor,
+			self.__year,
+			self.__vehicle_size_class,
+			self.__cylinders,
+			self.__engine_displacement,
+			self.__fuel_type1,
+			self.__fuel_type2,
+			self.__time_to_charge_at_120v,
+			self.__time_to_charge_at_240v,
+			self.__epa_range_for_fuel_type2,
+			self.__combined_kpl_for_fuel_type1,
+			self.__combined_kpl_for_fuel_type2,
+			self.__epa_fuel_economy_score,
+			self.__ghg_score,
+			self.__transmission,
+			self.__transmission_descriptor,
+			self.__start_stop,
+			self.__drive,
+			self.__luggage_volume,
+			self.__guzzler
+		]
+
+	def id_gen(self):
+		# _list = ["" if val == None else str(val) for val in self.data_list()]
+		# _str = "_".join(_list)
+		# print(1, _str)
+		# _str = re.sub(r"__+", "_", _str)
+		# print(2, _str)
+		# return _str
+		return f"{self.__make}_{self.__model}_{self.__id}"
 
 	def __repr__(self): return f"Car ( {self.__make}, {self.__model}, {self.__year}, {self.__transmission} )"
