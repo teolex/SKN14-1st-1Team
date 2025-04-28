@@ -6,9 +6,9 @@ st.set_page_config(page_title="🚗 자동차 스펙 비교기", layout="wide")
 
 ### ✅ 0. 차량 이미지 매칭
 car_images = {
-    ("Ford", "Bronco 4WD"): "https://upload.wikimedia.org/wikipedia/commons/e/e1/2021_Ford_Bronco.jpg",
-    ("Chevrolet", "S10 Pickup"): "https://upload.wikimedia.org/wikipedia/commons/6/6f/1995_Chevrolet_S-10_4x4.jpg",
-    ("Honda", "Accord"): "https://upload.wikimedia.org/wikipedia/commons/0/0e/2018_Honda_Accord.jpg",
+    ("Hyundai", "Elantra", "2024"): 'Car_image/Hyundai_Elantra(2024).png',
+    ("Kia", "Carnival", "2025"): "Car_image/Kia_Carnival(2025).png",
+    ("Genesis", "G90 RWD", "2022"): "Car_image/Genesis_G90_RWD(2022).png",
 }
 default_image_url = "https://via.placeholder.com/300x200?text=No+Image"
 
@@ -189,22 +189,22 @@ spec_list = ['브랜드', '모델명', '연식', '배기량 (L)', '연료', '변
 def show_vehicle_detail(vehicle):
     st.dialog(f"🚘 {vehicle['브랜드']} {vehicle['모델명']} ({vehicle['연식']}) 상세 정보")
     # 이미지
-    key = (vehicle['브랜드'], vehicle['모델명'])
-    image_url = car_images.get(key, default_image_url)
-    # st.image(image_url)
-    if image_url == default_image_url:
-        st.markdown("""
-                                    <div style='
-                                        text-align: center;
-                                        font-size: 16px;
-                                        color: gray;
-                                        margin-bottom: 16px;
-                                    '>
-                                        📷 사진이 없습니다
-                                    </div>
-                                """, unsafe_allow_html=True)
+    key = (vehicle['브랜드'], vehicle['모델명'], str(vehicle['연식']))
+    image_path = car_images.get(key, default_image_url)
+
+    if image_path:
+        st.image(image_path)
     else:
-        st.image(image_url)
+        st.markdown("""
+                <div style='
+                    text-align: center;
+                    font-size: 16px;
+                    color: gray;
+                    margin-bottom: 16px;
+                '>
+                    📷 사진이 없습니다
+                </div>
+            """, unsafe_allow_html=True)
 
     for spec in spec_list:
         st.markdown(f"""
@@ -225,9 +225,9 @@ for i, col in enumerate(spec_cols):
             vehicle = selected_vehicles[i]
 
             # 이미지
-            key = (vehicle['브랜드'], vehicle['모델명'])
+            key = (vehicle['브랜드'], vehicle['모델명'], str(vehicle['연식']))
             image_url = car_images.get(key, default_image_url)
-            # st.image(image_url)
+
             if image_url == default_image_url:
                 st.markdown("""
                                 <div style='
