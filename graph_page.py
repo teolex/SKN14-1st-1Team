@@ -30,7 +30,7 @@ def load_data():
                    vehicle_size_class AS Vehicle_Size_Class,
                    cylinders AS Cylinders,
                    (engine_displacement * 1000) AS Engine_Displacement,            -- 배기량(cc)
-                   fuel_type1 AS Fuel_Type1,
+                   fuel_type1 AS Fuel_Type, 
                    fuel_type2 AS Fuel_Type2,
                    time_to_charge_at_120v AS Time_To_Charge_At_120v,
                    time_to_charge_at_240v AS Time_To_Charge_At_240v,
@@ -76,10 +76,10 @@ with st.sidebar:
         selected_make = st.selectbox('제조사(Make) 선택', ['전체'] + list(df['Make'].unique()))
         if selected_make != '전체':
             filtered_df = filtered_df[filtered_df['Make'] == selected_make]
-    if 'Fuel Type' in df.columns:
-        selected_fuel = st.selectbox('연료 종류(Fuel Type) 선택', ['전체'] + list(df['Fuel Type'].unique()))
+    if 'Fuel_Type' in df.columns:
+        selected_fuel = st.selectbox('연료 종류(Fuel Type) 선택', ['전체'] + list(df['Fuel_Type'].unique()))
         if selected_fuel != '전체':
-            filtered_df = filtered_df[filtered_df['Fuel Type'] == selected_fuel]
+            filtered_df = filtered_df[filtered_df['Fuel_Type'] == selected_fuel]
 
 # 비교할 모델 선택 (필터 적용)
 selected_models = st.multiselect('비교할 모델을 선택하세요', filtered_df['Model'].unique())
