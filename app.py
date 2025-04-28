@@ -108,13 +108,23 @@ for i in range(3):
             st.markdown(f"### 🚘 차량 {i + 1} 선택")
 
         with title_cols[1]:
-            with title_cols[1]:
-                # 브랜드를 선택했을 때만 로고를 표시
-                if selected_brand != '--브랜드를 선택하세요--':
-                    brand_logo_url = get_brand_logo(selected_brand)
-                    st.markdown(f'<img src="{brand_logo_url}" width="80px" height="65px"/>', unsafe_allow_html=True)
-                # else: # 만약 브랜드 선택 전 다른 내용을 표시하고 싶다면 여기에 추가
-                #     st.empty() # 아무것도 표시하지 않음
+            # 브랜드를 선택했을 때만 로고를 표시
+            if selected_brand != '--브랜드를 선택하세요--':
+                brand_logo_url = get_brand_logo(selected_brand)
+                if brand_logo_url == "https://via.placeholder.com/150x50?text=No+Logo":
+                    st.markdown("""
+                        <div style='
+                            text-align: center;
+                            font-size: 14px;
+                            color: gray;
+                            margin-bottom: 12px;
+                        '>
+                            로고가 없습니다
+                        </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.image(brand_logo_url)
+                    # st.image(brand_logo_url)
 
         # ✅ 브랜드 선택
         selected_brand = st.selectbox(
@@ -201,7 +211,21 @@ for i, col in enumerate(spec_cols):
             # 이미지
             key = (vehicle['브랜드'], vehicle['모델명'])
             image_url = car_images.get(key, default_image_url)
-            st.image(image_url)
+            # st.image(image_url)
+            if image_url == default_image_url:
+                st.markdown("""
+                                <div style='
+                                    text-align: center;
+                                    font-size: 16px;
+                                    color: gray;
+                                    margin-bottom: 16px;
+                                '>
+                                    📷 사진이 없습니다
+                                </div>
+                            """, unsafe_allow_html=True)
+            else:
+                st.image(image_url)
+
 
             # 차량명
             title = f"{vehicle['브랜드']} {vehicle['모델명']} ({vehicle['연식']})"
@@ -221,9 +245,16 @@ for i, col in enumerate(spec_cols):
                     </div>
                 """, unsafe_allow_html=True)
 
-            # 🔥 자세히 보기 버튼
-            if st.button(f"🚘 {vehicle['모델명']} 자세히 보기", key=f"detail_{i}"):
+            # 🔥 자세히 보기 버튼 (가운데 정렬)
+            st.markdown("""
+                <style>
+                    button[kind=tertiary] p { border:1px solid gray; border-radius:5px; padding:5px 15px; }
+                </style>
+            """, unsafe_allow_html=True)
+
+            if st.button(f"🚘 {vehicle['모델명']} 자세히 보기 🔍", key=f"detail_{i}", use_container_width=True, type="tertiary"):
                 show_vehicle_detail(vehicle)
+
 
         else:
             st.markdown("🚗 차량을 선택하세요!", unsafe_allow_html=True)
