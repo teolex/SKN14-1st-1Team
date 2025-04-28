@@ -188,7 +188,23 @@ spec_list = ['브랜드', '모델명', '연식', '배기량 (L)', '연료', '변
 @st.dialog("당신의 차는?")
 def show_vehicle_detail(vehicle):
     st.dialog(f"🚘 {vehicle['브랜드']} {vehicle['모델명']} ({vehicle['연식']}) 상세 정보")
-    st.image(car_images.get((vehicle['브랜드'], vehicle['모델명']), default_image_url))
+    # 이미지
+    key = (vehicle['브랜드'], vehicle['모델명'])
+    image_url = car_images.get(key, default_image_url)
+    # st.image(image_url)
+    if image_url == default_image_url:
+        st.markdown("""
+                                    <div style='
+                                        text-align: center;
+                                        font-size: 16px;
+                                        color: gray;
+                                        margin-bottom: 16px;
+                                    '>
+                                        📷 사진이 없습니다
+                                    </div>
+                                """, unsafe_allow_html=True)
+    else:
+        st.image(image_url)
 
     for spec in spec_list:
         st.markdown(f"""
@@ -235,14 +251,19 @@ for i, col in enumerate(spec_cols):
 
             # 스펙 출력
             for spec in spec_list:
+                is_best = False
+
+                if spec == '복합연비 (mpg)':
+                    best_idx = max(range(len(selected_vehicles)), key=lambda idx: selected_vehicles[idx][spec])
+                    is_best = (i == best_idx)
+                elif spec == '연간 연료비 (USD)':
+                    best_idx = min(range(len(selected_vehicles)), key=lambda idx: selected_vehicles[idx][spec])
+                    is_best = (i == best_idx)
+
                 st.markdown(f"""
-                    <div style='
-                        text-align: center;
-                        margin-bottom: 8px;
-                        font-size: 16px;
-                    '>
-                        <b>{spec}</b>: {vehicle[spec]}
-                    </div>
+            <div style='text-align: center; margin-bottom: 8px; font-size: 16px; {"background-color: #eaf4ef; border-radius: 5px; padding: 4px;" if is_best else ""}'>
+            <b>{spec}</b>: {vehicle[spec]}
+            </div>
                 """, unsafe_allow_html=True)
 
             # 🔥 자세히 보기 버튼 (가운데 정렬)
