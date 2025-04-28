@@ -49,7 +49,7 @@
       <a href='https://github.com/ParkVitna'>박빛나</a><br />
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/719dfe50-9b45-470e-bdc6-c22a57508169" width=200 alt="keun"/><br />
+      <img src="https://cdn.autoissue.co.kr/news/photo/202308/3325_7588_529.jpg" width=200 alt="2025년 4월 28일 현 시점에 전 세계에서 가장 비싸고 아름다운 차, 롤스로이스 라 로즈 누아르 드롭테일"/><br />
       <a href='https://github.com/teolex'>송지훈</a><br />
     </td>
     <td align="center">
