@@ -1,0 +1,6 @@
+project-root/
+│
+├── app.py                  # Streamlit 메인 코드
+├── requirements.txt        # 필요한 패키지 목록
+├── all-vehicles-model.xlsx # 데이터 파일
+└── .gitignore              # (옵션) 불필요한 파일 제외
