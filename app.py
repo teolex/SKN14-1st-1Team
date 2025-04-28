@@ -28,7 +28,7 @@ try:
                 model,
                 year,
                 engine_displacement,
-                fuel_type,
+                fuel_type1 as fuel_type,
                 transmission,
                 combined_mpg_for_fuel_type1,
                 annual_fuel_cost_for_fuel_type1
