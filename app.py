@@ -1,3 +1,3 @@
 import streamlit as st
 
-st.title("🚗차량 비교 서비스🚗")
+st.title("한 눈에 비교하기")

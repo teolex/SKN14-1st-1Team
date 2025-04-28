@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.title("🚗차량 스펙 비교하기🚗")
+
 pages = {
     "차량 스펙 비교하기": [
         st.Page("app.py", title="한 눈에 비교하기"),
