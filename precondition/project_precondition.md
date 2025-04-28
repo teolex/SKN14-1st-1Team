@@ -27,7 +27,14 @@
 2. 각 작업자 PC 에 설치된 MySQL에 대한 접속정보 설정
     ![DB 연결](images/dump_guide00.jpg)
 3. skn14_localhost-2025_04_28_11_09_01-dump.sql 덤프 실행
-    ![DB 덤프 받기](images/dump_guide01.jpg)
+    ![DB 덤프 받기](images/dump_guide_01.jpg)
+    ![DB 덤프 받기](images/dump_guide_02.jpg)
+    ![DB 덤프 받기](images/dump_guide_03.jpg)
+4. 안쓰는 컬럼과 2010년식 차종 정보 삭제를 위해 쿼리 수행
+    ![delete_surplus.sql 실행](images/delete_surplus_01.jpg)
+    ![delete_surplus.sql 실행](images/delete_surplus_02.jpg)
+    ![delete_surplus.sql 실행](images/delete_surplus_03.jpg)
+
 
 
 ## PyCharm 에 streamlit 실행/디버그 구성하기
