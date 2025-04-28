@@ -24,17 +24,18 @@
       create database cardb;
       grant all PRIVILEGES on cardb.* to 'skn14'@'%';
     ```
-2. 각 작업자 PC 에 설치된 MySQL에 대한 접속정보 설정
+2. 각 작업자 PC 에 설치된 MySQL에 대한 접속정보 설정<br/>
     ![DB 연결](images/dump_guide00.jpg)
-3. skn14_localhost-2025_04_28_11_09_01-dump.sql 덤프 실행
-    ![DB 덤프 받기](images/dump_guide_01.jpg)
-    ![DB 덤프 받기](images/dump_guide_02.jpg)
-    ![DB 덤프 받기](images/dump_guide_03.jpg)
-4. 안쓰는 컬럼과 2010년식 차종 정보 삭제를 위해 쿼리 수행
-    ![delete_surplus.sql 실행](images/delete_surplus_01.jpg)
-    ![delete_surplus.sql 실행](images/delete_surplus_02.jpg)
-    ![delete_surplus.sql 실행](images/delete_surplus_03.jpg)
-
+3. skn14_localhost-2025_04_28_11_09_01-dump.sql 덤프 실행<br/>
+    ![DB 덤프 받기](images/dump_guide_01.jpg)<br/>
+    ![DB 덤프 받기](images/dump_guide_02.jpg)<br/>
+    ![DB 덤프 받기](images/dump_guide_03.jpg)<br/><br/>
+4. 안쓰는 컬럼과 2010년식 차종 정보 삭제를 위해 쿼리 수행<br/>
+    ![delete_surplus.sql 실행](images/delete_surplus_01.jpg)<br/>
+    ![delete_surplus.sql 실행](images/delete_surplus_02.jpg)<br/>
+    ![delete_surplus.sql 실행](images/delete_surplus_03.jpg)<br/><br/>
+5. 각 테이블의 컬럼들에 코멘트를 추가하기 위해 `add_comment.sql` 의 쿼리들을 모두 실행.<br/>
+    ![코멘트를 추가하는 쿼리 수행](images/add_comment_01.jpg)
 
 
 ## PyCharm 에 streamlit 실행/디버그 구성하기

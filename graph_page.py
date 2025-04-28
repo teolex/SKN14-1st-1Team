@@ -1,13 +1,9 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import os
 import mysql.connector
-from model.Car import Car
 
 st.set_page_config(page_title="자동차 스펙 비교", layout="wide")
-
-EXCEL_FILE = 'all-vehicles-model.xlsx'
 
 config = {
     "host": 'localhost',
