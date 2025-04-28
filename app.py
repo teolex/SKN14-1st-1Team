@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import mysql.connector
 # ✅ 1. 페이지 설정
 st.set_page_config(page_title="🚗 자동차 스펙 비교기", layout="wide")
 
@@ -11,12 +12,34 @@ car_images = {
 }
 default_image_url = "https://via.placeholder.com/300x200?text=No+Image"
 
+config = {
+    "host": 'localhost',
+    "port": 3306, # mysql
+    "user": 'skn14',
+    "password": 'skn14',
+    "database": 'cardb'
+}
 
-
-
-# ✅ 2. 데이터 불러오기
-file_path = 'all-vehicles-model@public.csv'
-df = pd.read_csv(file_path, sep=';')
+try:
+    with mysql.connector.connect(**config) as conn:
+        # SQL 쿼리를 직접 실행하여 DataFrame으로 반환
+        query = '''
+            select make,
+                model,
+                year,
+                engine_displacement,
+                fuel_type,
+                transmission,
+                combined_mpg_for_fuel_type1,
+                annual_fuel_cost_for_fuel_type1
+            FROM cardb.all_vehicles_model_public
+        '''
+        # pd.read_sql()로 데이터 로드
+        df = pd.read_sql(query, conn)
+except mysql.connector.Error as err:
+    print('DB 오류: ', err)
+    # 에러 발생 시 빈 DataFrame 반환
+    df = pd.DataFrame()
 
 # ✅ 3. 필요한 칼럼만 추출
 useful_columns = [
@@ -38,8 +61,20 @@ vehicle_df.rename(columns={
     'annual_fuel_cost_for_fuel_type1': '연간 연료비 (USD)'
 }, inplace=True)
 
-# ✅ 5. 브랜드 로고 데이터 불러오기
-brand_logo_df = pd.read_csv('brand_logos.csv')  # 여기에 네 brand_logos.csv 파일 경로!
+try:
+    with mysql.connector.connect(**config) as conn:
+        # SQL 쿼리를 직접 실행하여 DataFrame으로 반환
+        query = '''
+            select make,
+                logo_url
+            FROM cardb.brand_logos
+        '''
+        # pd.read_sql()로 데이터 로드
+        brand_logo_df = pd.read_sql(query, conn)
+except mysql.connector.Error as err:
+    print('DB 오류: ', err)
+    # 에러 발생 시 빈 DataFrame 반환
+    brand_logo_df = pd.DataFrame()
 
 # ✅ 6. 브랜드명 -> 로고 URL 가져오는 함수
 def get_brand_logo(brand):
@@ -77,7 +112,7 @@ for i in range(3):
                 # 브랜드를 선택했을 때만 로고를 표시
                 if selected_brand != '--브랜드를 선택하세요--':
                     brand_logo_url = get_brand_logo(selected_brand)
-                    st.image(brand_logo_url)
+                    st.markdown(f'<img src="{brand_logo_url}" width="80px" height="65px"/>', unsafe_allow_html=True)
                 # else: # 만약 브랜드 선택 전 다른 내용을 표시하고 싶다면 여기에 추가
                 #     st.empty() # 아무것도 표시하지 않음
 
@@ -127,8 +162,9 @@ best_fuel_efficiency_idx = -1
 best_fuel_efficiency_value = -1
 
 for idx, vehicle in enumerate(selected_vehicles):
-    if vehicle['복합연비 (mpg)'] > best_fuel_efficiency_value:
-        best_fuel_efficiency_value = vehicle['복합연비 (mpg)']
+
+    if int(vehicle['복합연비 (mpg)']) > best_fuel_efficiency_value:
+        best_fuel_efficiency_value = int(vehicle['복합연비 (mpg)'])
         best_fuel_efficiency_idx = idx
 
 # ✅ 선택한 차량 스펙 비교
