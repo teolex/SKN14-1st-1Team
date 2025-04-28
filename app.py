@@ -123,7 +123,7 @@ for i in range(3):
                         </div>
                     """, unsafe_allow_html=True)
                 else:
-                    st.image(brand_logo_url)
+                    st.markdown(f'<img src="{brand_logo_url}" width="80px" height="50px"/>', unsafe_allow_html=True)
                     # st.image(brand_logo_url)
 
         # ✅ 브랜드 선택
