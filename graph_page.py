@@ -2,21 +2,57 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import os
+import mysql.connector
+from model.Car import Car
 
 st.set_page_config(page_title="자동차 스펙 비교", layout="wide")
 
 EXCEL_FILE = 'all-vehicles-model.xlsx'
 
-# 데이터 파일 존재 확인
-if not os.path.exists(EXCEL_FILE):
-    st.error(f"데이터 파일이 '{EXCEL_FILE}'로 존재하지 않습니다. 프로젝트 폴더에 파일을 넣어주세요.")
-    st.stop()
+config = {
+    "host": 'localhost',
+    "port": 3306, # mysql
+    "user": 'skn14',
+    "password": 'skn14',
+    "database": 'cardb'
+}
 
 # 캐싱을 적용한 데이터 로딩 함수
-@st.cache_data
 def load_data():
-    df = pd.read_excel(EXCEL_FILE, engine='openpyxl')
-    return df
+    try:
+        with mysql.connector.connect(**config) as conn:
+            # SQL 쿼리를 직접 실행하여 DataFrame으로 반환
+            query = '''
+                SELECT make AS Make,
+                   model AS Model,
+                   electric_motor AS Electric_Motor,
+                   year AS Year,
+                   vehicle_size_class AS Vehicle_Size_Class,
+                   cylinders AS Cylinders,
+                   (engine_displacement * 1000) AS Engine_Displacement,            -- 배기량(cc)
+                   fuel_type1 AS Fuel_Type1,
+                   fuel_type2 AS Fuel_Type2,
+                   time_to_charge_at_120v AS Time_To_Charge_At_120v,
+                   time_to_charge_at_240v AS Time_To_Charge_At_240v,
+                   (epa_range_for_fuel_type2 * 1.60934) AS Epa_Range_For_Fuel_Type2,  -- 완충 시 전기주행거리(km)
+                   (combined_mpg_for_fuel_type1 * 1.60934 / 3.78541) AS Combined_Kpl_For_Fuel_Type1,    -- 주 연료 평균연비(km/l)
+                   (combined_mpg_for_fuel_type2 * 1.60934 / 3.78541) AS Combined_Kpl_For_Fuel_Type2,    -- 보조 연료 평균연비(km/l)
+                   epa_fuel_economy_score AS Epa_Fuel_Economy_Score,
+                   ghg_score AS GHG_Score,
+                   transmission AS Transmission,
+                   transmission_descriptor AS Transmission_Descriptor,
+                   start_stop AS Start_Stop,
+                   drive AS Drive,
+                   ((2_door_luggage_volume + 4_door_luggage_volume) * 28.3) AS Luggage_Volume,
+                   IF(guzzler IS NULL, 'GOOD', 'BAD') AS Guzzler_Score
+                FROM cardb.all_vehicles_model_public
+            '''
+            # pd.read_sql()로 데이터 로드
+            return pd.read_sql(query, conn)
+    except mysql.connector.Error as err:
+        print('DB 오류: ', err)
+        # 에러 발생 시 빈 DataFrame 반환
+        return pd.DataFrame()
 
 df = load_data()
 
@@ -69,8 +105,8 @@ if selected_models:
 
     # 비교할 스펙 컬럼 후보
     spec_cols = [
-        'City Mpg For Fuel Type1', 'Highway Mpg For Fuel Type1', 'Combined Mpg For Fuel Type1',
-        'Engine displacement', 'Cylinders', 'Co2 Fuel Type1', 'Annual Fuel Cost For Fuel Type1'
+        'Combined_Kpl_For_Fuel_Type1', 'Combined_Kpl_For_Fuel_Type2', 'Engine_Displacement',
+        'Cylinders', 'Epa_Fuel_Economy_Score', 'GHG_Score', 'Luggage_Volume'
     ]
     # 실제 존재하는 컬럼만 사용
     spec_cols = [col for col in spec_cols if col in compare_df.columns]
