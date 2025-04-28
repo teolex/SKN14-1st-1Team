@@ -75,8 +75,23 @@
 
 ------------------------------------------------------------------------------
 # 📋 테이블 명세
-<img width="814" alt="Image" src="https://github.com/user-attachments/assets/016acaf1-31fb-4002-8c68-8cfe39e94ea1" />
-<img width="816" alt="Image" src="https://github.com/user-attachments/assets/e23a6894-14e4-484b-af7c-074d628d5317" />
+<table>
+  <thead>
+    <tr><th>all_vehicles_model_public 테이블</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><img src="readme_image/table_spec_01.jpg"></td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr><th>brand_logos 테이블</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><img src="readme_image/table_spec_02.jpg"></td></tr>
+  </tbody>
+</table>
 
 ------------------------------------------------------------------------------
 # 📚 수집 데이터 설명
