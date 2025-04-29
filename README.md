@@ -3,13 +3,13 @@
 ------------------------------------------------------------------------------
 # 📚 주요 목차
 
-> [1️⃣ 🚀 프로젝트명 및 개요](#🚀-프로젝트명-및-개요)
-> [2️⃣ 👥 팀 소개](#👥-팀-소개)
-> [3️⃣ 🎮 기술 스택](#🛠-기술-스택)
-> [4️⃣ 📚 ERD (Entity Relationship Diagram)](#📊-ERD-(Entity-Relationship-Diagram))
-> [5️⃣ 🛠  테이블 명세](#📋-테이블-명세)
-> [6️⃣ 📊 수집 데이터 설명](#📚-수집-데이터-설명)
-> [7️⃣ 📋 시연 동영상](#🎮-시연-동영상)
+> [1️⃣ 🚀 프로젝트명 및 개요](#🚀-프로젝트명-및-개요)<br/>
+> [2️⃣ 👥 팀 소개](#👥-팀-소개)<br/>
+> [3️⃣ 🎮 기술 스택](#🛠-기술-스택)<br/>
+> [4️⃣ 📚 ERD (Entity Relationship Diagram)](#📊-ERD-(Entity-Relationship-Diagram))<br/>
+> [5️⃣ 🛠  테이블 명세](#📋-테이블-명세)<br/>
+> [6️⃣ 📊 수집 데이터 설명](#📚-수집-데이터-설명)<br/>
+> [7️⃣ 📋 시연 동영상](#🎮-시연-동영상)<br/>
 > [9️⃣ 💭 한줄 회고](#-💭-한줄-회고)
 
 ------------------------------------------------------------------------------
@@ -58,11 +58,11 @@
     <td align="center"><a href='https://github.com/sungjaecho98'>조성재</a></td>
   </thead>
   <tbody>
-    <td style="padding:0"><img style="height:106px;" src="https://www.beverlyhillscarclub.com/galleria_images/11531/11531_p39_l.jpg" alt="클래식의 정점, 1세대 머스탱"/></td>
-    <td style="padding:0"><img style="height:106px;" src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2020%2F11%2FBmw-unveiled-new-electric-suv-car-ix-inext-01.jpg?w=1440&cbr=1&q=90&fit=max" alt="전기차, iX"/></td>
-    <td style="padding:0"><img style="height:106px;" src="https://imgd.aeplcdn.com/664x374/n/cw/ec/107719/range-rover-exterior-right-front-three-quarter-46.jpeg?isig=0&q=80" width="200" alt="Land Rover Range Rover"/></td>
-    <td style="padding:0"><img style="height:106px;" src="https://cdn.autoissue.co.kr/news/photo/202308/3325_7588_529.jpg" alt="2025년 4월 28일 현 시점에 전 세계에서 가장 비싸고 아름다운 차, 롤스로이스 라 로즈 누아르 드롭테일" title="2025년 4월 28일 현 시점에 전 세계에서 가장 비싸고 아름다운 차, 롤스로이스 라 로즈 누아르 드롭테일"/></td>
-    <td style="padding:0"><img style="height:106px;" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Ffile1.bobaedream.co.kr%2Fspecial%2F2022%2F09%2F14%2F08%2Fjh531663113241_1967945504.jpg&type=a340" alt="페라리 프로산게"/></td>
+    <td style="padding:0;"><img style="height:106px;" src="https://www.beverlyhillscarclub.com/galleria_images/11531/11531_p39_l.jpg" alt="클래식의 정점, 1세대 머스탱"/></td>
+    <td style="padding:0;"><img style="height:106px;" src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2020%2F11%2FBmw-unveiled-new-electric-suv-car-ix-inext-01.jpg?w=1440&cbr=1&q=90&fit=max" alt="전기차, iX"/></td>
+    <td style="padding:0;"><img style="height:106px;" src="https://imgd.aeplcdn.com/664x374/n/cw/ec/107719/range-rover-exterior-right-front-three-quarter-46.jpeg?isig=0&q=80" width="200" alt="Land Rover Range Rover"/></td>
+    <td style="padding:0;"><img style="height:106px;" src="https://cdn.autoissue.co.kr/news/photo/202308/3325_7588_529.jpg" alt="2025년 4월 28일 현 시점에 전 세계에서 가장 비싸고 아름다운 차, 롤스로이스 라 로즈 누아르 드롭테일" title="2025년 4월 28일 현 시점에 전 세계에서 가장 비싸고 아름다운 차, 롤스로이스 라 로즈 누아르 드롭테일"/></td>
+    <td style="padding:0;"><img style="height:106px;" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Ffile1.bobaedream.co.kr%2Fspecial%2F2022%2F09%2F14%2F08%2Fjh531663113241_1967945504.jpg&type=a340" alt="페라리 프로산게"/></td>
   </tbody>
 </table>
 
