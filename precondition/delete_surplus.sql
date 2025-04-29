@@ -1,15 +1,16 @@
 ;####################################################################
 ;-- 테이블 복사하기
-create table all_vehicles_model_public_org like all_vehicles_model_public;          -- 테이블 구조 복사
-insert into all_vehicles_model_public_org select * from all_vehicles_model_public;  -- 테이블 데이터 복사
+# create table all_vehicles_model_public_org like all_vehicles_model_public;          -- 테이블 구조 복사
+# insert into all_vehicles_model_public_org select * from all_vehicles_model_public;  -- 테이블 데이터 복사
 
 ;-- 위 쿼리는, dump 를 import 해서 작업하는 경우 all_vehicles_model_public 가 원본인 상태에서
 ;-- 테이블을 all_vehicles_model_public_org 라는 이름으로 백업해놓기 위해 실행하는 쿼리임.
 
 ;-- dump 를 import 한 직후 delete_surplus.sql 을 수행한 적 있다면,
 ;-- 위 쿼리는 주석처리하고, 아래 쿼리를 수행해야 함.
-# create table all_vehicles_model_public like all_vehicles_model_public_org;          -- 테이블 구조 복사
-# insert into all_vehicles_model_public select * from all_vehicles_model_public_org;  -- 테이블 데이터 복사
+drop table all_vehicles_model_public;
+create table all_vehicles_model_public like all_vehicles_model_public_org;          -- 테이블 구조 복사
+insert into all_vehicles_model_public select * from all_vehicles_model_public_org;  -- 테이블 데이터 복사
 
 ;####################################################################
 ;-- 안쓰는 컬럼 삭제
