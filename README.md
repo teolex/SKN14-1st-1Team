@@ -75,14 +75,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr><th width="20%">개발언어</th><td align="center"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://docs.python.org/3/_static/py.svg"></td><td width="60%"><a href="https://www.python.org/">Python</a></td></tr>
-    <tr><th width="20%">UI 구성</th><td align="center"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://docs.streamlit.io/logo.svg"></td><td width="60%"><a href="https://streamlit.io/">Streamlit</a></td></tr>
-    <tr><th width="20%">Database</th><td align="center"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://velog.velcdn.com/images/idle-danie/post/13be7cd9-9a14-464f-a69d-3e277e82e2ad/image.png"></td><td width="60%"><a href="https://www.mysql.com/">MySQL</a></td></tr>
-    <tr><th width="20%">형상관리</th><td align="center"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_git-512.png"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://seeklogo.com/images/G/github-logo-5F384D0265-seeklogo.com.png"></td><td width="60%"><a href="https://git-scm.com/">Git (with Github)</a></td></tr>
+    <tr><th width="20%">개발언어</th><td align="center"><img src="readme_image/logo_01.png"></td><td width="60%"><a href="https://www.python.org/">Python</a></td></tr>
+    <tr><th width="20%">UI 구성</th><td align="center"><img src="readme_image/logo_02.png"></td><td width="60%"><a href="https://streamlit.io/">Streamlit</a></td></tr>
+    <tr><th width="20%">Database</th><td align="center"><img src="readme_image/logo_03.png"></td><td width="60%"><a href="https://www.mysql.com/">MySQL</a></td></tr>
+    <tr><th width="20%">형상관리</th><td align="center"><img src="readme_image/logo_04.png"><img src="readme_image/logo_05.png"></td><td width="60%"><a href="https://git-scm.com/">Git (with Github)</a></td></tr>
     <tr><th width="20%" rowspan="3">IDE</th>
-        <td width="20%" align="center"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://static.cdnlogo.com/logos/p/47/pycharmedu-icon.svg"></td><td width="60%"><a href="https://www.jetbrains.com/ko-kr/pycharm/download/?section=windows">PyCharm</a></td></tr>
-    <tr><td width="20%" align="center"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://cdn.iconscout.com/icon/free/png-256/free-sourcetree-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-6-pack-logos-icons-3030342.png"></td><td width="60%"><a href="https://www.sourcetreeapp.com/">SourceTree</a></td></tr>
-    <tr><td width="20%" align="center"><img style="max-width:40px;max-height:40px;min-height:40px;" src="https://www.adobe.com/cc-shared/assets/img/product-icons/svg/illustrator-40.svg"></td><td width="60%"><a href="https://www.adobe.com/kr/products/illustrator.html?gclid=CjwKCAjwq7fABhB2EiwAwk-YbLJrw7-mRCRYIqnGdVLuGMgxUq9CbKeIMayBod6M25lwT6HWHuwmqhoCA9wQAvD_BwE&sdid=QQ42P3HM&mv=search&mv2=paidsearch&ef_id=CjwKCAjwq7fABhB2EiwAwk-YbLJrw7-mRCRYIqnGdVLuGMgxUq9CbKeIMayBod6M25lwT6HWHuwmqhoCA9wQAvD_BwE:G:s&s_kwcid=AL!3085!3!460585117331!e!!g!!adobe%20ai!95734519!4169949319&gad_source=1&gbraid=0AAAAADraYsJzNSsuJazP4vYVVbNUnCQ4M">Adobe Ai</a></td></tr>
+        <td width="20%" align="center"><img src="readme_image/logo_06.png"></td><td width="60%"><a href="https://www.jetbrains.com/ko-kr/pycharm/download/?section=windows">PyCharm</a></td></tr>
+    <tr><td width="20%" align="center"><img src="readme_image/logo_07.png"></td><td width="60%"><a href="https://www.sourcetreeapp.com/">SourceTree</a></td></tr>
+    <tr><td width="20%" align="center"><img src="readme_image/logo_08.png"></td><td width="60%"><a href="https://www.adobe.com/kr/products/illustrator.html?gclid=CjwKCAjwq7fABhB2EiwAwk-YbLJrw7-mRCRYIqnGdVLuGMgxUq9CbKeIMayBod6M25lwT6HWHuwmqhoCA9wQAvD_BwE&sdid=QQ42P3HM&mv=search&mv2=paidsearch&ef_id=CjwKCAjwq7fABhB2EiwAwk-YbLJrw7-mRCRYIqnGdVLuGMgxUq9CbKeIMayBod6M25lwT6HWHuwmqhoCA9wQAvD_BwE:G:s&s_kwcid=AL!3085!3!460585117331!e!!g!!adobe%20ai!95734519!4169949319&gad_source=1&gbraid=0AAAAADraYsJzNSsuJazP4vYVVbNUnCQ4M">Adobe Ai</a></td></tr>
   </tbody>
 </table>
 
