@@ -87,7 +87,7 @@
 </table>
 
 ------------------------------------------------------------------------------
-# 🌆 UI설계 (Figma)
+# 🌆 UI설계 (Adobe Ai)
 <table>
   <thead>
     <tr>
@@ -135,7 +135,7 @@
 <table>
   <tbody>
     <tr><th width="120">출처</th><td><a href="https://public.opendatasoft.com/explore/dataset/all-vehicles-model/api/">opendatasoft</a></td></tr>
-    <tr><th width="120">수집 목적</th><td>자동자의 연비/용량/연식 등 스펙을 비교하여 보여주어, 차량 선택 시 편이성을 제공하기 위한 데이터가 필요했습니다.</td></tr>
+    <tr><th width="120">수집 목적</th><td>자동자의 연비/용량/연식 등 스펙을 비교하여 보여주며, 차량 선택 시 편의성을 제공하기 위한 데이터가 필요했습니다.</td></tr>
     <tr><th width="120">수집 방법</th><td>단일 차종이 아닌, 각 제조사별 모든 차종에 대한 데이터가 필요했습니다.<br/>국내 통계 사이트의 자료들은 유료거나 차량의 행정정보만 제공하는 등 데이터 수집이 어려웠고, 해외사이트에서 저희가 원하던 형식의 자료를 찾을 수 있었습니다.</td></tr>
   </tbody>
 </table>
