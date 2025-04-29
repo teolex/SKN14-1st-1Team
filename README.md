@@ -71,7 +71,7 @@
 <table>
   <thead>
     <tr>
-      <th align="center">구분</th><th align="center">아이콘</th><th align="center">링크</th>
+      <th width="200" align="center">구분</th><th align="center">아이콘</th><th align="center">링크</th>
     </tr>
   </thead>
   <tbody>
