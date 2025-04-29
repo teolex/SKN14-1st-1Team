@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import mysql.connector
 
-st.set_page_config(page_title="자동차 스펙 비교", layout="wide")
+st.set_page_config(page_title="📊 자세하게 비교하기", layout="wide")
 
 config = {
     "host": 'localhost',
@@ -52,8 +52,7 @@ def load_data():
 
 df = load_data()
 
-st.title("🚗차량 스펙 비교하기🚗")
-st.header("그래프로 비교하기")
+st.header("📊 자세하게 비교하기")
 
 # 컬럼명 확인 (앱 첫 화면에서만 보이게)
 with st.expander("데이터 컬럼명 보기"):
