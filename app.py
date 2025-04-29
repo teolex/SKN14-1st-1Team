@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import mysql.connector
 # ✅ 1. 페이지 설정
-st.set_page_config(page_title="🚗 자동차 스펙 비교기", layout="wide")
+st.set_page_config(page_title="🚗 자동차 스펙 비교하기", layout="wide")
 
 ### ✅ 0. 차량 이미지 매칭
 car_images = {
@@ -85,7 +85,7 @@ def get_brand_logo(brand):
         return "https://via.placeholder.com/150x50?text=No+Logo"
 
 # ✅ 7. Streamlit 제목
-st.markdown("<h1 style='text-align: center;'>🚗 차량 스펙 비교기</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>🚗 자동차 스펙 비교하기</h1>", unsafe_allow_html=True)
 st.markdown("---")
 
 # ✅ 8. 3개 차량 선택
